@@ -126,9 +126,5 @@ Temporary Items
 .apdisk
 
 
-cmd/echoops/echoops
-cmd/echohook/echohook
-cmd/plat-echo-ops/plat-echo-ops
-cmd/plat-echo-hook/plat-echo-hook
 
 # End of https://www.gitignore.io/api/go,intellij,visualstudiocode
