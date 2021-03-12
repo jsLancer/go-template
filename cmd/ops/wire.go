@@ -6,9 +6,9 @@ import (
 	"github.com/google/wire"
 	"go-template/internal/app/ops"
 	"go-template/internal/app/ops/controllers"
-	schedule "go-template/internal/app/ops/job"
 	"go-template/internal/app/ops/repositories"
 	"go-template/internal/app/ops/services"
+	"go-template/internal/app/ops/job"
 	"go-template/internal/pkg/app"
 	"go-template/internal/pkg/config"
 	"go-template/internal/pkg/db"
@@ -23,7 +23,7 @@ var providerSet = wire.NewSet(
 	repositories.ProviderSet,
 	services.ProviderSet,
 	controllers.ProviderSet,
-	schedule.ProviderSet,
+	job.ProviderSet,
 	http.ProviderSet,
 	ops.ProviderSet,
 )

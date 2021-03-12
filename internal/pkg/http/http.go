@@ -9,7 +9,7 @@ import (
 	"github.com/google/wire"
 	"github.com/pkg/errors"
 	"github.com/spf13/viper"
-	"go-demo/internal/pkg/utils/netutil"
+	"go-template/internal/pkg/utils/netutil"
 	"go.uber.org/zap"
 	"net/http"
 	"time"

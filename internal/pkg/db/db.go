@@ -6,6 +6,7 @@ import (
 	_ "github.com/jinzhu/gorm/dialects/mysql"
 	"github.com/pkg/errors"
 	"github.com/spf13/viper"
+	"go-template/internal/app/ops/models"
 	"go.uber.org/zap"
 )
 
@@ -31,7 +32,6 @@ func NewOptions(v *viper.Viper) (*Options, error) {
 	return o, err
 }
 
-// New returns *gorm.DB that used for mysql operate
 func New(o *Options, logger *zap.Logger) (*DB, error) {
 	var err error
 	db, err := gorm.Open("mysql", o.URL)
@@ -53,7 +53,7 @@ func New(o *Options, logger *zap.Logger) (*DB, error) {
 }
 
 func (db *DB) Start() error {
-	//db.DB.AutoMigrate(&models.Application{})
+	db.DB.AutoMigrate(&models.Demo{})
 	return nil
 }
 

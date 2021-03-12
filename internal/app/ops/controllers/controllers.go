@@ -5,8 +5,16 @@ import (
 	"go-template/internal/pkg/http"
 )
 
-func InitControllersFn() http.InitControllers {
+func InitControllersFn(
+	demoCtl *DemoController,
+) http.InitControllers {
 	return func(r *gin.Engine) {
+
+		r.GET("/demo", demoCtl.FindAll)
+		r.GET("/demo/:id", demoCtl.GetByID)
+		r.POST("demo", demoCtl.Create)
+		r.PUT("/demo/:id", demoCtl.Update)
+		r.DELETE("/demo", demoCtl.DeleteByID)
 
 	}
 }

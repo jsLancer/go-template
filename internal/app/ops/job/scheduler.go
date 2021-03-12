@@ -1,4 +1,4 @@
-package schedule
+package job
 
 import (
 	"github.com/google/wire"
@@ -53,6 +53,10 @@ func (s *Scheduler) Start() error {
 
 func (s *Scheduler) Stop() error {
 	s.cron.Stop()
+	return nil
+}
+
+func (s *Scheduler) Reload() error {
 	return nil
 }
 

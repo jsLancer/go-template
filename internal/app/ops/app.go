@@ -3,7 +3,7 @@ package ops
 import (
 	"github.com/pkg/errors"
 	"github.com/spf13/viper"
-	schedule "go-template/internal/app/ops/job"
+	"go-template/internal/app/ops/job"
 	"go-template/internal/pkg/app"
 	"go-template/internal/pkg/db"
 	"go-template/internal/pkg/http"
@@ -29,7 +29,7 @@ func NewOptions(v *viper.Viper, logger *zap.Logger) (*Options, error) {
 }
 
 func NewApp(o *Options, logger *zap.Logger, db *db.DB, http *http.Server,
-	scheduler *schedule.Scheduler) (*app.Application, error) {
+	scheduler *job.Scheduler) (*app.Application, error) {
 	a, err := app.New(o.Name, logger, db, http, scheduler)
 
 	if err != nil {

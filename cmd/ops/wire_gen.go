@@ -50,13 +50,16 @@ func CreateApp(cf string) (*app.Application, error) {
 	if err != nil {
 		return nil, err
 	}
-	initControllers := controllers.InitControllersFn()
+	demoRepository := repositories.NewDemoRepository(dbDB)
+	demoService := services.NewDemoService(demoRepository)
+	demoController := controllers.NewDemoController(demoService)
+	initControllers := controllers.InitControllersFn(demoController)
 	engine := http.NewRouter(httpOptions, logger, initControllers)
 	server, err := http.New(httpOptions, logger, engine)
 	if err != nil {
 		return nil, err
 	}
-	scheduler := schedule.NewScheduler(logger)
+	scheduler := job.NewScheduler(logger)
 	application, err := ops.NewApp(opsOptions, logger, dbDB, server, scheduler)
 	if err != nil {
 		return nil, err
@@ -66,4 +69,4 @@ func CreateApp(cf string) (*app.Application, error) {
 
 // wire.go:
 
-var providerSet = wire.NewSet(log.ProviderSet, config.ProviderSet, db.ProviderSet, repositories.ProviderSet, services.ProviderSet, controllers.ProviderSet, schedule.ProviderSet, http.ProviderSet, ops.ProviderSet)
+var providerSet = wire.NewSet(log.ProviderSet, config.ProviderSet, db.ProviderSet, repositories.ProviderSet, services.ProviderSet, controllers.ProviderSet, job.ProviderSet, http.ProviderSet, ops.ProviderSet)
